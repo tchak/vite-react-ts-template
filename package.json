@@ -15,6 +15,7 @@
     "formatjs:compile": "formatjs compile lang/en.json --ast --out-file lang/compiled/en.json"
   },
   "dependencies": {
+    "@headlessui/react": "^1.0.0",
     "@heroicons/react": "^1.0.0",
     "compression": "^1.7.4",
     "express": "^4.17.1",
