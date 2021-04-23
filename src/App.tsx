@@ -1,18 +1,21 @@
 import React from 'react';
-import { Routes, Route } from 'react-router';
+import { useRoutes } from 'react-router';
 
 import './index.css';
+import { buildRoutes } from './routes';
+
+const pages = import.meta.globEager('./pages/**/*.tsx');
+const routes = buildRoutes(pages);
 
 import { Head } from './components/Head';
-import Home from './pages/Home';
 
 export function App() {
+  const content = useRoutes(routes);
+
   return (
     <>
       <Head />
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
+      {content}
     </>
   );
 }

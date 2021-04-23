@@ -9,8 +9,8 @@
     "build:client": "vite build --outDir dist/client",
     "build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server",
     "build:formatjs": "yarn formatjs:extract && yarn formatjs:compile && yarn lint --fix",
-    "generate": "vite build --outDir dist/static && yarn build:server && node prerender",
-    "serve": "node server",
+    "generate": "tsc && yarn build:formatjs && vite build --outDir dist/static && yarn build:server && ts-node --project server/tsconfig.json server/prerender",
+    "serve": "ts-node --project server/tsconfig.json server",
     "formatjs:extract": "formatjs extract 'src/**/*.ts*' --out-file lang/en.json --id-interpolation-pattern '[sha512:contenthash:base64:6]'",
     "formatjs:compile": "formatjs compile lang/en.json --ast --out-file lang/compiled/en.json"
   },
@@ -23,11 +23,12 @@
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-helmet-async": "^1.0.9",
-    "react-intl": "^5.15.8",
-    "react-router-dom": "^6.0.0-beta.0"
+    "react-intl": "^5.16.0",
+    "react-router-dom": "^6.0.0-beta.0",
+    "ts-node": "^9.1.1"
   },
   "devDependencies": {
-    "@formatjs/cli": "^4.2.7",
+    "@formatjs/cli": "^4.2.8",
     "@tailwindcss/aspect-ratio": "^0.2.0",
     "@tailwindcss/forms": "^0.3.2",
     "@tailwindcss/typography": "^0.4.0",
@@ -42,13 +43,13 @@
     "autoprefixer": "^10.2.5",
     "eslint": "^7.24.0",
     "eslint-config-prettier": "^8.2.0",
-    "eslint-plugin-formatjs": "^2.14.6",
-    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-formatjs": "^2.14.7",
+    "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "prettier": "^2.2.1",
     "tailwindcss": "^2.1.1",
     "typescript": "^4.2.4",
-    "vite": "^2.1.5",
+    "vite": "^2.2.1",
     "vite-plugin-fonts": "^0.2.2"
   },
   "prettier": {
